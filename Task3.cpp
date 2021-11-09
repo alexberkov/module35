@@ -11,7 +11,7 @@ int main() {
   auto recursiveGetFileNamesByExtension = [](const filesystem::path& path, const string& extension) {
     vector<string> names;
     for(auto& p: filesystem::recursive_directory_iterator(path))
-      if (p.path().extension().compare(extension) == 0) names.push_back(p.path().filename());
+      if (p.is_regular_file() && p.path().extension().compare(extension) == 0) names.push_back(p.path().filename());
     return names;
   };
 
